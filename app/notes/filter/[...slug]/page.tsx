@@ -1,4 +1,4 @@
-import { fetchNotesByTags } from "@/lib/api";
+import { fetchNotes } from "@/lib/api";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import NotesByTagsClient from "./NotesByTags.client";
 
@@ -15,8 +15,8 @@ export default async function NotesByTags({ params }: NotesByTagsProps) {
     const queryClient = new QueryClient()
 
     await queryClient.prefetchQuery({
-            queryKey: ["noteQuery", {tag}],
-            queryFn: () => fetchNotesByTags(tag),
+            queryKey: ["noteQuery", {search: "", page: 1, tag}],
+            queryFn: () => fetchNotes("", 1, tag),
     
     })
     

@@ -1,16 +1,16 @@
 'use client';
 
 import css from "./notesPage.module.css"
-import NoteList from "../../components/NoteList/NoteList";
-import Pagination from "../../components/Pagination/Pagination";
-import Modal from "../../components/Modal/Modal"
-import NoteForm from "../../components/NoteForm/NoteForm"
-import SearchBox from "../../components/SearchBox/SearchBox";
-import { fetchNotes } from "../../lib/api";
+import NoteList from "../../../../components/NoteList/NoteList";
+import Pagination from "../../../../components/Pagination/Pagination";
+import Modal from "../../../../components/Modal/Modal"
+import NoteForm from "../../../../components/NoteForm/NoteForm"
+import SearchBox from "../../../../components/SearchBox/SearchBox";
+import { fetchNotes } from "../../../../lib/api";
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import type { Note } from "../../types/note"
+import type { Note } from "../../../../types/note"
 
 export default function NotesClient() {
     const [searchValue, setSearchValue] = useState<string>('')
@@ -18,7 +18,7 @@ export default function NotesClient() {
     const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
     const { data } = useQuery({
         queryKey: ["noteQuery", searchValue, page],
-        queryFn: () => fetchNotes(searchValue, page),
+        queryFn: () => fetchNotes(searchValue, page, ""),
         placeholderData: keepPreviousData,
     })
     console.log(data);

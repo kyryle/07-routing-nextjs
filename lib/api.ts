@@ -16,12 +16,13 @@ interface NoteData {
 }
 
 
-export const fetchNotes = async (search: string, page: number) => {
+export const fetchNotes = async (search: string, page: number, tag: string) => {
     try {
         const result = await axios.get<NoteHubResponse>('https://notehub-public.goit.study/api/notes', {
             params: {
                 search: search,
                 page: page,
+                ...(tag && {tag}),
             },
             headers: {
                 Authorization: `Bearer ${myKey}`
@@ -94,21 +95,21 @@ export const fetchNoteById = async (id: NoteId) => {
     }
 }
 
-export const fetchNotesByTags = async (tag: string) => {
-    try {
-    const result = await axios.get<NoteHubResponse>(`https://notehub-public.goit.study/api/notes/${tag}`, {
-        headers: {
-            Authorization: `Bearer ${myKey}`
-        }
-    })
-        console.log(result);
+// export const fetchNotesByTags = async (tag: string) => {
+//     try {
+//     const result = await axios.get<NoteHubResponse>(`https://notehub-public.goit.study/api/notes/${tag}`, {
+//         headers: {
+//             Authorization: `Bearer ${myKey}`
+//         }
+//     })
+//         console.log(result);
         
     
-    return result.data
+//     return result.data
     
 
-} catch (err) {
-        console.log(err);
-        throw err
-    }
-}
+// } catch (err) {
+//         console.log(err);
+//         throw err
+//     }
+// }

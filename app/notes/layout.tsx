@@ -1,4 +1,4 @@
-import SideBarNotes from "@/components/SideBar/SideBar"
+
 
 
 interface NotesLayoutProps {
@@ -8,7 +8,6 @@ interface NotesLayoutProps {
 export default function NotesLayout({ children }: NotesLayoutProps) {
     return (
         <div>
-            <SideBarNotes/>
             
             {children};
         </div>
