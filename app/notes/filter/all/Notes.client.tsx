@@ -21,7 +21,7 @@ export default function NotesClient() {
         queryFn: () => fetchNotes(searchValue, page, ""),
         placeholderData: keepPreviousData,
     })
-    console.log(data);
+    // console.log(data);
 
 
     const handleClick = () => {
@@ -47,8 +47,8 @@ export default function NotesClient() {
 
     const results: Note[] = data?.notes ?? []
     const totalPages = data?.totalPages ?? 0
-    console.log(data);
-    console.log(results);
+    // console.log(data);
+    // console.log(results);
 
     return (
         <div className={css.app}>

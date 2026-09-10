@@ -1,4 +1,4 @@
-export default function DefaultFunction() {
+export default function ModalDefaultNull() {
 
     return null
 }

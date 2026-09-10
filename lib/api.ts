@@ -29,7 +29,7 @@ export const fetchNotes = async (search: string, page: number, tag: string) => {
             }
 
         })
-        console.log(result);
+        // console.log(result);
         
         return result.data
 
@@ -94,22 +94,3 @@ export const fetchNoteById = async (id: NoteId) => {
         throw err
     }
 }
-
-// export const fetchNotesByTags = async (tag: string) => {
-//     try {
-//     const result = await axios.get<NoteHubResponse>(`https://notehub-public.goit.study/api/notes/${tag}`, {
-//         headers: {
-//             Authorization: `Bearer ${myKey}`
-//         }
-//     })
-//         console.log(result);
-        
-    
-//     return result.data
-    
-
-// } catch (err) {
-//         console.log(err);
-//         throw err
-//     }
-// }

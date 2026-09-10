@@ -8,7 +8,7 @@ interface NotesByTagsProps {
 
 export default async function NotesByTags({ params }: NotesByTagsProps) {
     const { slug } = await params
-    console.log(slug);
+    // console.log(slug);
 
     const tag = slug[0]
 
