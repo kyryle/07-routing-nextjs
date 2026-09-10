@@ -1,6 +1,6 @@
 import css from "./page.module.css"
 
-export default function missingPage() {
+export default function MissingPage() {
     return (
         <div>
             <h1 className={css.title}>404 - Page not found</h1>

@@ -1,34 +1,3 @@
-// "use client";
-// import { fetchNotes } from "@/lib/api";
-// import { Note } from "@/types/note";
-// import { useQuery } from "@tanstack/react-query";
-// import { useParams } from "next/navigation";
-
-// export default function NotesByTagsClient() {
-//   const { slug } = useParams<{ slug: string[] }>();
-
-//   const tag = slug[0];
-
-//   const { data, isLoading, isError } = useQuery({
-//     queryKey: ["tagQuery", {search: "", page: 1, tag}],
-//     queryFn: () => fetchNotes("", 1, tag),
-//     refetchOnMount: false,
-//   });
-
-//   return (
-//     <>
-//       {data && (
-//         <ul>
-//           {data && data.notes.map((note: Note) => (
-//               <li key={note.id}>{note.title}</li>
-//           ))}
-//         </ul>
-//           )}
-//           {isLoading && <p>Loading...</p>}
-//           {isError && <p>an error have occured</p>}
-//     </>
-//   );
-// }
 'use client';
 
 import css from "./notesPage.module.css"
@@ -42,12 +11,16 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import type { Note } from "../../../../types/note"
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
 
-export default function NotesClient() {
-  const { slug } = useParams<{ slug: string[] }>();
+interface NotesClientProps {
+    tag: string
+}
 
-  const tag = slug[0];
+export default function NotesClient({tag}: NotesClientProps) {
+//   const { slug } = useParams<{ slug: string[] }>();
+
+//   const tag = slug[0];
 
     const [searchValue, setSearchValue] = useState<string>('')
     const [page, setPage] = useState<number>(1)
@@ -57,7 +30,6 @@ export default function NotesClient() {
         queryFn: () => fetchNotes(searchValue, page, tag),
         placeholderData: keepPreviousData,
     })
-    // console.log(data);
 
 
     const handleClick = () => {
@@ -83,8 +55,6 @@ export default function NotesClient() {
 
     const results: Note[] = data?.notes ?? []
     const totalPages = data?.totalPages ?? 0
-    // console.log(data);
-    // console.log(results);
 
     return (
         <div className={css.app}>

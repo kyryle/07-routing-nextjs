@@ -3,13 +3,16 @@
 import { useQuery } from "@tanstack/react-query"
 import css from "../../../../components/NoteList/NoteList.module.css"
 import { fetchNoteById } from "@/lib/api"
+import Modal from "../../../../components/Modal/Modal"
+import { useRouter } from "next/navigation";
 
 interface NoteDetailsProps {
   id: string
 }
 
 
-export default function NoteDetails({id}: NoteDetailsProps) {
+export default function NoteDetails({ id }: NoteDetailsProps) {
+  const route = useRouter()
 
  const {data: note, isError } = useQuery({
           queryKey: ["singleNote", id],
@@ -19,8 +22,13 @@ export default function NoteDetails({id}: NoteDetailsProps) {
   if (isError || !note) {
     return <p>заметка не найдена</p>
   }
+
+  const handleClose = () => {
+        route.back()
+    }
   
-    return (
+  return (
+      <Modal onClose={handleClose}>
         <li className={css.listItem} key={note.id}>
             <h2 className={css.title}>{note.title}</h2>
             <p className={css.content}>{note.content}</p>
@@ -28,6 +36,7 @@ export default function NoteDetails({id}: NoteDetailsProps) {
             <div className={css.footer}>
               <span className={css.tag}>{note.tag}</span>
             </div>
-          </li>
+      </li>
+      </Modal>
     )
 }
