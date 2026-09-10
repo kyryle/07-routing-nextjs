@@ -2,7 +2,7 @@
 
 import Modal from "../../../../components/Modal/Modal"
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import NoteDetails from "./NoteDetails.client"
+import NoteDetails from "./NotePreview.client"
 import { useParams, useRouter } from "next/navigation";
 
 

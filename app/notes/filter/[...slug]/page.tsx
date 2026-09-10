@@ -1,6 +1,6 @@
 import { fetchNotes } from "@/lib/api";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import NotesByTagsClient from "./NotesByTags.client";
+import NotesByTagsClient from "./Notes.client";
 
 interface NotesByTagsProps {
     params: Promise<{slug: string[]}>
